@@ -104,9 +104,10 @@ class ElevenLabsSynthesizerConfig(
 ):
     api_key: Optional[str] = None
     voice_id: Optional[str] = ELEVEN_LABS_ADAM_VOICE_ID
+    optimize_streaming_latency: Optional[int]
+    experimental_streaming: Optional[bool] = False
     stability: Optional[float]
     similarity_boost: Optional[float]
-    optimize_streaming_latency: Optional[int]
     model_id: Optional[str]
 
     @validator("voice_id")
@@ -136,12 +137,12 @@ RIME_DEFAULT_SAMPLE_RATE = 22050
 RIME_DEFAULT_BASE_URL = "https://rjmopratfrdjgmfmaios.functions.supabase.co/rime-tts"
 RIME_DEFAULT_USE_NEW_FORMAT = False
 
+
 class RimeSynthesizerConfig(SynthesizerConfig, type=SynthesizerType.RIME.value):
     speaker: str = RIME_DEFAULT_SPEAKER
     sampling_rate: int = RIME_DEFAULT_SAMPLE_RATE
     base_url: str = RIME_DEFAULT_BASE_URL
     use_new_format: bool = RIME_DEFAULT_USE_NEW_FORMAT
-
 
 
 COQUI_DEFAULT_SPEAKER_ID = "ebe2db86-62a6-49a1-907a-9a1360d4416e"
@@ -164,9 +165,12 @@ PLAYHT_DEFAULT_VOICE_ID = "larry"
 
 
 class PlayHtSynthesizerConfig(SynthesizerConfig, type=SynthesizerType.PLAY_HT.value):
+    api_key: Optional[str] = None
+    user_id: Optional[str] = None
+    speed: Optional[int] = None
+    seed: Optional[int] = None
+    temperature: Optional[int] = None
     voice_id: str = PLAYHT_DEFAULT_VOICE_ID
-    speed: Optional[str] = None
-    preset: Optional[str] = None
 
 
 class CoquiTTSSynthesizerConfig(

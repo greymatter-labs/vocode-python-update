@@ -38,14 +38,15 @@ class TwilioClient(BaseTelephonyClient):
     def get_telephony_config(self):
         return self.twilio_config
 
-    def create_call(
-            self,
-            conversation_id: str,
-            to_phone: str,
-            from_phone: str,
-            record: bool = False,
-            digits: Optional[str] = None
+    async def create_call(
+        self,
+        conversation_id: str,
+        to_phone: str,
+        from_phone: str,
+        record: bool = False,
+        digits: Optional[str] = None,
     ) -> str:
+        # TODO: Make this async. This is blocking.
         twiml = self.get_connection_twiml(conversation_id=conversation_id)
         twilio_call = self.twilio_client.calls.create(
             twiml=twiml.body.decode("utf-8"),
