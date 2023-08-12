@@ -69,7 +69,7 @@ class AzureSynthesizer(BaseSynthesizer[AzureSynthesizerConfig]):
         # Instantiates a client
         azure_speech_key = azure_speech_key or getenv("AZURE_SPEECH_KEY")
         azure_speech_region = azure_speech_region or getenv("AZURE_SPEECH_REGION")
-        azure_endpoint_id = azure_endpoint_id or getenv("AZURE_ENDPOINT_ID")
+        azure_endpoint_id = getenv("AZURE_ENDPOINT_ID")
         if not azure_speech_key:
             raise ValueError(
                 "Please set AZURE_SPEECH_KEY environment variable or pass it as a parameter"
